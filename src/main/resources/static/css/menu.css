@@ -1,60 +1,60 @@
-* {
+*{
     margin: 0;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
-body {
-    font-family: sans-sherif;
+body{
+    font-family: sans-serif;
     padding: 90px 20px 0;
-   
 }
 
-.header {
+.header{
     background-color: #076AF0;
     height: 12%;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%
 }
 
-.nav {
+.nav{
     display: flex;
     justify-content: space-between;
     max-width: 100%;
     margin: 0 auto;
 }
 
-.nav-link {
+.nav-link{
     color: white;
     text-decoration: none;
 }
 
-.logo {
+.logo{
     font-size: 30px;
     font-weight: bold;
     padding: 0 40px;
-    line-height: 80vh;
+    line-height: 12vh;
 }
 
-.nav-menu {
+.nav-menu{
     display: flex;
     margin-left: 40px;
     list-style: none;
 }
 
-.nav-menu-item {
+.nav-menu-item{
     font-size: 18px;
     margin: 0 10px;
-    line-height: 80vh;
+    line-height: 12vh;
 }
 
-.nav-menu-item:hover {
+.nav-menu-item:hover{
     background-color: navy;
-    transition: 0.5s;
+    transition: 0.5s
 }
 
-.nav-menu-link {
+.nav-menu-link{
     padding: 8px 12px;
     border-radius: 4px;
+
 }
