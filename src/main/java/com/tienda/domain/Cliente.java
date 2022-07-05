@@ -19,6 +19,10 @@ public class Cliente implements Serializable{
     String telefono;
     String apellidos;
     String correo;
+    
+    @JoinColumn(name="id_credito", referencedColumnName = "id_credito")
+    @ManyToOne
+    private Credito credito;
 
     public Cliente() {
     }
@@ -28,6 +32,14 @@ public class Cliente implements Serializable{
         this.telefono = telefono;
         this.apellidos = apellidos;
         this.correo = correo;
+    }
+
+    public Cliente(String nombre, String telefono, String apellidos, String correo, Credito credito) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.credito = credito;
     }
     
     
