@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns;sec="http://thymeleaf.org/extras/spring-security">
     <head>
         <title>techShop</title>
         <meta charset="UTF-8">
@@ -10,7 +10,8 @@
         <header th:replace="layout/plantilla :: header"/>
         <div class="contenido">
             <h2 th:text="#{cliente.titulo}">Listado de Clientes</h2>
-            <a th:href="@{/cliente/nuevo}" th:text="#{cliente.nuevo}">Nuevo Cliente</a>
+            <a th:href="@{/cliente/nuevo}" th:text="#{cliente.nuevo}"
+               sec:authorize="hasRole('ROLE_ADMIN')">Nuevo Cliente</a>
             <div th:if="${clientes != null and !clientes.empty}">
                 <table border="1">
                     <thead>
@@ -20,8 +21,8 @@
                             <th th:text="#{cliente.correo}">Correo</th>
                             <th th:text="#{cliente.telefono}">Teléfono</th>
                             <th th:text="#{cliente.limite}">Límite</th>
-                            <th th:text="#{accion.actualizar}">Modificar</th>
-                            <th th:text="#{accion.eliminar}">Eliminar</th>
+                            <th th:text="#{accion.actualizar}" sec:authorize="hasRole('ROLE_ADMIN')">Modificar</th>
+                            <th th:text="#{accion.eliminar}" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,9 +32,9 @@
                             <td th:text="${item.correo}"></td>
                             <td th:text="${item.telefono}"></td>
                             <td th:text="${item.credito.limite}"></td>
-                            <td><a th:href="@{/cliente/modificar/} + ${item.idCliente}"
+                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/cliente/modificar/} + ${item.idCliente}"
                                    th:text="#{accion.actualizar}">Modificar</a></td>
-                            <td><a th:href="@{/cliente/eliminar/} + ${item.idCliente}"
+                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/cliente/eliminar/} + ${item.idCliente}"
                                    th:text="#{accion.eliminar}">Eliminar</a></td>
                         </tr>
                     </tbody>
