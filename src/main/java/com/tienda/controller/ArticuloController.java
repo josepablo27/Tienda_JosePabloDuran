@@ -18,11 +18,11 @@ public class ArticuloController {
     private CategoriaService categoriaService;
     
     @GetMapping("/articulo/listado")
-    public String inicio(Model model){
-        var articulos = articuloService.getArticulos(false);
-        model.addAttribute("articulos",articulos);
+    public String inicio(Model model) {
+        var articulos = articuloService.getArticulos(true);
+        model.addAttribute("totalArticulos", articulos.size());
+        model.addAttribute("articulos", articulos);
         return "/articulo/listado";
-        
     }
     
     @GetMapping("/articulo/nuevo")
@@ -32,7 +32,7 @@ public class ArticuloController {
         return "/articulo/modificar";
     }
     
-    @PostMapping("articulo//guardar")
+    @PostMapping("articulo/guardar")
     public String guardarArticulo(Articulo articulo){
         articuloService.save(articulo);
         return "redirect:/articulo/listado";

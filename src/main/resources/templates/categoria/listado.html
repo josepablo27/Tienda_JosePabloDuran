@@ -1,43 +1,15 @@
 <!DOCTYPE html>
-<html xmlns;sec="http://thymeleaf.org/extras/spring-security">
-    <head>
-        <title>techShop</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link th:href="@{/css/menu.css}" rel="stylesheet" type="text/css"/>
+<html xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
     <body>
-        <header th:replace="layout/plantilla :: header"/>
-        <div class="contenido">
-            <h2 th:text="#{categoria.titulo}">Listado de Categorias</h2>
-            <a th:href="@{/categoria/nuevo}" th:text="#{categoria.nuevo}"
-               sec:authorize="hasRole('ROLE_ADMIN')">Nueva Categoría</a>
-            <div th:if="${categorias != null and !categorias.empty}">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th th:text="#{categoria.descripcion}">Descripción</th>
-                            <th th:text="#{categoria.activo}">Activo</th>
-                            <th th:text="#{accion.actualizar}" sec:authorize="hasRole('ROLE_ADMIN')">Modificar</th>
-                            <th th:text="#{accion.eliminar}" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="item : ${categorias}">
-                            <td th:text="${item.descripcion}"></td>
-                            <td><input type="checkbox" name="activo" th:checked="${item.activo}" disabled="true" /> </td>
-                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/categoria/modificar/} + ${item.idCategoria}" 
-                                   th:text="#{accion.actualizar}">Modificar</a></td>
-                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/categoria/eliminar/} + ${item.idCategoria}" 
-                                   th:text="#{accion.eliminar}">Eliminar</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div th:if="${categorias == null or categorias.empty}">
-                <p th:text="#{categoria.no_mostrar}"></p>
-            </div>
-        </div>
+        <header th:replace="layout/plantilla :: header" />
+
+        <section th:replace="categoria/fragmentosCategoria :: botonesAgregar"/>
+        <section th:replace="categoria/fragmentosCategoria :: agregarCategoria"/>
+        <section th:replace="categoria/fragmentosCategoria :: listadoCategorias"/>
+
         <footer th:replace="layout/plantilla :: footer" />
     </body>
 </html>

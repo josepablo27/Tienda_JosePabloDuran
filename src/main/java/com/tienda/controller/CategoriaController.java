@@ -14,11 +14,11 @@ public class CategoriaController {
     private CategoriaService categoriaService;
     
     @GetMapping("/categoria/listado")
-    public String inicio(Model model){
-        var categorias = categoriaService.getCategorias(false);
-        model.addAttribute("categorias",categorias);
+    public String inicio(Model model) {
+        var categorias = categoriaService.getCategorias(true);
+        model.addAttribute("totalCategorias", categorias.size());
+        model.addAttribute("categorias", categorias);
         return "/categoria/listado";
-        
     }
     
     @GetMapping("/categoria/nuevo")
@@ -26,7 +26,7 @@ public class CategoriaController {
         return "/categoria/modificar";
     }
     
-    @PostMapping("categoria//guardar")
+    @PostMapping("categoria/guardar")
     public String guardarCategoria(Categoria categoria){
         categoriaService.save(categoria);
         return "redirect:/categoria/listado";
@@ -39,7 +39,7 @@ public class CategoriaController {
         return "/categoria/modificar";
     }
     
-    @GetMapping("/categoria//eliminar/{idCategoria}")
+    @GetMapping("/categoria/eliminar/{idCategoria}")
     public String eliminarCategoria(Categoria categoria){
         categoriaService.delete(categoria);
         return "redirect:/categoria/listado";
