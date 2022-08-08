@@ -9,6 +9,18 @@
         <section th:replace="articulo/fragmentosArticulo :: botonesAgregar"/>
         <section th:replace="articulo/fragmentosArticulo :: agregarArticulo"/>
         <section th:replace="articulo/fragmentosArticulo :: listadoArticulos"/>
+        
+         <section class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a sec:authorie="hasRole('ROLE_ADMIN')" th:href="@{/articulo/ReporteArticulos}"
+                            class="btn btn-primary">
+                            <i class="fas fa-file"></i>Reporte</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <footer th:replace="layout/plantilla :: footer" />
     </body>
